@@ -1,6 +1,6 @@
 image:
-  repository: danipi809/e-gesetzgebung-iamock
-  tag: "0.1.0"
+  repository: danipi809/e-gesetzgebung
+  tag: "iamock-0.1.0"
   pullPolicy: IfNotPresent
 
 service:
