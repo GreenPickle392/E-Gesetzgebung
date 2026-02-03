@@ -1,1 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: egesetz-editor
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/GreenPickle392/E-Gesetzgebung.git
+    targetRevision: HEAD
+    path: charts/egesetz-editor
+    helm:
+      releaseName: egesetz-editor
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: egesetz
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 
