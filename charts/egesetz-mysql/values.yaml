@@ -1,1 +1,10 @@
+image:
+  repository: danipi809/e-gesetzgebung-data
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
 
+mysql:
+  rootPassword: "root"
+
+service:
+  port: 3306
