@@ -1,1 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: editor-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: editor-backend
+  template:
+    metadata:
+      labels:
+        app: editor-backend
+    spec:
+      containers:
+        - name: editor-backend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: server.port
+              value: {{ .Values.env.SERVER_PORT | quote }}
+
+            - name: auth.datasource.url
+              value: {{ .Values.env.AUTH_DB_URL | quote }}
+            - name: auth.datasource.username
+              value: {{ .Values.env.DB_USER | quote }}
+            - name: auth.datasource.password
+              value: {{ .Values.env.DB_PASS | quote }}
+
+            - name: spring.datasource.url
+              value: {{ .Values.env.EDITOR_DB_URL | quote }}
+            - name: spring.datasource.username
+              value: {{ .Values.env.DB_USER | quote }}
+            - name: spring.datasource.password
+              value: {{ .Values.env.DB_PASS | quote }}
+
+            - name: filestore.datasource.url
+              value: {{ .Values.env.FILESTORE_DB_URL | quote }}
+            - name: filestore.datasource.username
+              value: {{ .Values.env.DB_USER | quote }}
+            - name: filestore.datasource.password
+              value: {{ .Values.env.DB_PASS | quote }}
+
+            - name: iam.url
+              value: {{ .Values.env.IAM_URL | quote }}
+            - name: plateg.url
+              value: {{ .Values.env.PLATEG_URL | quote }}
+            - name: plateg.x-api-key
+              value: {{ .Values.env.PLATEG_X_API_KEY | quote }}
+
+          readinessProbe:
+            httpGet:
+              path: /LEA/API/v1/actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
 
