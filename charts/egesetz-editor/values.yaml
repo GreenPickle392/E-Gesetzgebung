@@ -1,1 +1,25 @@
+image:
+  repository: danipi809/e-gesetzgebung-editor-backend
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8080
+
+env:
+  SERVER_PORT: "8080"
+
+  # DB connectivity via k8s service dns "mysql"
+  AUTH_DB_URL: "jdbc:mysql://mysql:3306/rbac"
+  DB_USER: "root"
+  DB_PASS: "root"
+
+  EDITOR_DB_URL: "jdbc:mysql://mysql:3306/editor"
+  FILESTORE_DB_URL: "jdbc:mysql://mysql:3306/files"
+
+  # service-to-service
+  IAM_URL: "http://iamock:3000"
+  PLATEG_URL: "http://backend-with-cockpit:8080/egesetzgebung-platform-backend"
+
+  PLATEG_X_API_KEY: "plateg-api-key"
 
