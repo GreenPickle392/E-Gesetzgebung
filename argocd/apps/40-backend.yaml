@@ -1,1 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: egesetz-backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/GreenPickle392/E-Gesetzgebung.git
+    targetRevision: HEAD
+    path: charts/egesetz-backend
+    helm:
+      releaseName: egesetz-backend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: egesetz
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
 
