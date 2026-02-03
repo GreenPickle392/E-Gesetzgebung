@@ -1,1 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iamock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iamock
+  template:
+    metadata:
+      labels:
+        app: iamock
+    spec:
+      containers:
+        - name: iamock
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: HOST_IAM
+              value: {{ .Values.env.HOST_IAM | quote }}
+            - name: RESSORT
+              value: {{ .Values.env.RESSORT | quote }}
+          ports:
+            - containerPort: 3000
 
