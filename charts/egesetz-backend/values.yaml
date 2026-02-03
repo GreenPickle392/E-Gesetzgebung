@@ -1,1 +1,26 @@
+image:
+  repository: danipi809/e-gesetzgebung-backend-with-cockpit
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8080
+
+env:
+  SERVER_PORT: "8080"
+
+  IAM_URL: "http://iamock:3000"
+
+  # base urls point to service name (no external ip)
+  BACKEND_URL_BASE: "http://backend-with-cockpit:8080"
+  SPA_URL_BASE: "http://backend-with-cockpit:8080"
+
+  # mysql base url
+  SPRING_DS_BASEURL: "jdbc:mysql://mysql:3306"
+  DB_USER: "root"
+  DB_PASS: "root"
+
+  # editor service
+  EDITOR_URL: "http://editor-backend:8080/LEA/API/v1"
+  EDITOR_X_API_KEY: "editor-api-key"
 
