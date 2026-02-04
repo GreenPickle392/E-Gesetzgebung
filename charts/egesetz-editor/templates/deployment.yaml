@@ -52,7 +52,7 @@ spec:
 
           readinessProbe:
             httpGet:
-              path: /LEA/API/v1/actuator/health
+              path: /
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
