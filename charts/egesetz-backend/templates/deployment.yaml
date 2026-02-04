@@ -44,7 +44,7 @@ spec:
 
           readinessProbe:
             httpGet:
-              path: /egesetzgebung-platform-backend/actuator/health
+              path: /actuator/health
               port: 8080
             initialDelaySeconds: 45
             periodSeconds: 10
