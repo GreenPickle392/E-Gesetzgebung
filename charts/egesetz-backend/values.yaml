@@ -24,3 +24,10 @@ env:
   EDITOR_URL: "http://editor-backend:8080/LEA/API/v1"
   EDITOR_X_API_KEY: "editor-api-key"
 
+  # Flyway / Init wie im VM-Compose Setup
+  spring.flyway.enabled: "true"
+  auth.flyway.enable: "true"
+  spring.datasource.initialization-mode: "always"
+  spring.jpa.database-platform: "org.hibernate.dialect.MySQLDialect"
+  production: "false"
+
