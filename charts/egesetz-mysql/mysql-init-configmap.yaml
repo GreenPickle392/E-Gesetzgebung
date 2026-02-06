@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb
+  namespace: egesetz
+data:
+  V0_init.sql: |
+    -- CREATE DATABASE eGesetz; CREATE DATABASE rbac; CREATE DATABASE editor; CREATE DATABASE files;
