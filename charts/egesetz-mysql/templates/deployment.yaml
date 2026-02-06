@@ -22,23 +22,33 @@ spec:
           ports:
             - containerPort: 3306
 
-          # NEW: mount init SQL so MySQL imports it on first startup
+          # Mount init SQL so MySQL imports it on first startup
           volumeMounts:
             - name: mysql-initdb
               mountPath: /docker-entrypoint-initdb.d
 
           readinessProbe:
             exec:
-              command: ["sh","-c","mysql -uroot -p{{ .Values.mysql.rootPassword }} -e 'SELECT 1'"]
-            initialDelaySeconds: 10
+              command:
+                - sh
+                - -c
+                - mysqladmin ping -h 127.0.0.1 -uroot -p{{ .Values.mysql.rootPassword }} --silent
+            initialDelaySeconds: 30
             periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+
           livenessProbe:
             exec:
-              command: ["sh","-c","mysql -uroot -p{{ .Values.mysql.rootPassword }} -e 'SELECT 1'"]
-            initialDelaySeconds: 20
+              command:
+                - sh
+                - -c
+                - mysqladmin ping -h 127.0.0.1 -uroot -p{{ .Values.mysql.rootPassword }} --silent
+            initialDelaySeconds: 60
             periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
 
-      # NEW: provide the init SQL via ConfigMap
       volumes:
         - name: mysql-initdb
           configMap:
