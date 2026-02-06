@@ -5,4 +5,7 @@ metadata:
   namespace: egesetz
 data:
   V0_init.sql: |
-    -- CREATE DATABASE eGesetz; CREATE DATABASE rbac; CREATE DATABASE editor; CREATE DATABASE files;
+    CREATE DATABASE IF NOT EXISTS eGesetz;
+    CREATE DATABASE IF NOT EXISTS rbac;
+    CREATE DATABASE IF NOT EXISTS editor;
+    CREATE DATABASE IF NOT EXISTS files;
